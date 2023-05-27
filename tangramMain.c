@@ -37,11 +37,11 @@ void clearArea(double left, double bottom, double width, double height);
 bool isInBound(Point p);
 void DefineColorRGB(string cName, double r,double g,double b);
 
-Shape shpList[7];
+Shape shpList[7];//good one
 Button btnList[BTN_NUM];
 Button uiBtnList[BTN_NUM_UI];
 string shpColor[7] = {"tBrown","tViolet","tOrange","tRed","tBlue","tGreen","tYellow"};
-string gameList[GAME_NUM] = {"·½¿é","Ìì¶ì"};
+string gameList[GAME_NUM] = {"ï¿½ï¿½ï¿½ï¿½","ï¿½ï¿½ï¿½"};
 string pathList[GAME_NUM] = {"square.tgm","swan.tgm"};
 int chooseGameIndex = 0;
 linkedlistADT vecList = NULL;
@@ -104,12 +104,12 @@ void initUI()
 {
 	double baseHeight = GetWindowHeight()-2.5;
 	
-	uiBtnList[0] = genBtn(4,1.3,1,0.5,"¿ªÊ¼",35);
-	uiBtnList[1] = genBtn(5,1.3,1,0.5,"ÔØÈë",35);
-	uiBtnList[2] = genBtn(6,1.3,1,0.5,"¹ØÓÚ",35);
-	uiBtnList[3] = genBtn(7,1.3,1,0.5,"ÍË³ö",35);
-	uiBtnList[4] = genBtn(4,3,0.5,0.5,"£¼",35);
-	uiBtnList[5] = genBtn(4,5,0.5,0.5,"£¾",35);
+	uiBtnList[0] = genBtn(4,1.3,1,0.5,"ï¿½ï¿½Ê¼",35);
+	uiBtnList[1] = genBtn(5,1.3,1,0.5,"ï¿½ï¿½ï¿½ï¿½",35);
+	uiBtnList[2] = genBtn(6,1.3,1,0.5,"ï¿½ï¿½ï¿½ï¿½",35);
+	uiBtnList[3] = genBtn(7,1.3,1,0.5,"ï¿½Ë³ï¿½",35);
+	uiBtnList[4] = genBtn(4,3,0.5,0.5,"ï¿½ï¿½",35);
+	uiBtnList[5] = genBtn(4,5,0.5,0.5,"ï¿½ï¿½",35);
 	SetPenColor("black");
 	DisplayClear();
 	loadDis(pathList[chooseGameIndex]);
@@ -145,11 +145,11 @@ void initTangrams(bool isDefault)
 		shpList[5] = genShape(3,Pl,Pt-3.5,0,5);
 		shpList[6] = genShape(4,Pl+1.6,Pt-3.3,90,6);
 	}
-	btnList[0] = genBtn(.1,0.1,1,0.5,"ÔØÈëÓÎÏ·",20);
-	btnList[1] = genBtn(.1,1.6,1,0.5,"±£´æÓÎÏ·",20);
-	btnList[2] = genBtn(.1,3.1,0.5,0.5,"¡ú",30);
-	btnList[3] = genBtn(.1,4.1,1,0.5,"°ïÖú",20);
-	btnList[4] = genBtn(.1,5.6,1,0.5,"·µ»Ø²Ëµ¥",20);
+	btnList[0] = genBtn(.1,0.1,1,0.5,"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·",20);
+	btnList[1] = genBtn(.1,1.6,1,0.5,"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·",20);
+	btnList[2] = genBtn(.1,3.1,0.5,0.5,"ï¿½ï¿½",30);
+	btnList[3] = genBtn(.1,4.1,1,0.5,"ï¿½ï¿½ï¿½ï¿½",20);
+	btnList[4] = genBtn(.1,5.6,1,0.5,"ï¿½ï¿½ï¿½Ø²Ëµï¿½",20);
 	updateDisplay(0);
 	
 	startTimer(0,250);
