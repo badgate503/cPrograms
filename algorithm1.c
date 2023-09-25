@@ -10,7 +10,9 @@ int getMinMatrixAlgo1();                   /*The first algorithm to calculate th
                                              simply by traversing all kinds of possibilities */
 int getMinMatrixAlgo2();                   /*The second algorithm to calculate the minimum submatrix sum*/       
 
-int getSubmatrixSum(int top, int left, int width, int height);   /*Function that calculates the sum of a specific
+int getSubVectorSum(int RowCol, int top, int left, int length);   /*Function that calculates the sum of a specific
+                                                                   submatrix given by TopLeft Position and Size */
+int getSubMatrixSum(int top, int left, int width, int height);   /*Function that calculates the sum of a specific
                                                                    submatrix given by TopLeft Position and Size */
 int main()
 {
@@ -21,7 +23,7 @@ int main()
 
 
 
-int getSubmatrixSum(int top, int left, int width, int height)   //Implementation of getSubmatrix()
+int getSubMatrixSum(int top, int left, int width, int height)   //Implementation of getSubmatrix()
 {
     int i, j, res = 0;
     for(i = 0; i < width; i++)          //Traverses the columns.
@@ -46,7 +48,7 @@ int getMinMatrixAlgo1()
             {
                 for(t = 0; t < MAT_SIZE - h + 1; t++)      //Traverses all possibilites of top positions, avoids overbounding
                 {
-                    tmpRes = getSubmatrixSum(t, l, w, h);
+                    tmpRes = getSubMatrixSum(t, l, w, h);
                     //printf("%d %d ; %d %d : %d\n", t, l, w, h, tmpRes);    //Test logs
                     if(max < tmpRes) max = tmpRes;
                 }
@@ -56,19 +58,39 @@ int getMinMatrixAlgo1()
     return max;
 }
 
+int getSubVectorSum(int RowCol, int top, int left, int length)
+{
+    int i, res = 0;
+    for(i = 0; i < length; i++)
+    {
+        res += matrix[top][left + i];
+    }
+    return res;
+}
+
 int getMinMatrixAlgo2()
 {
-    int i, j;
-    int colSum[MAT_SIZE] = {0}, rowSum[MAT_SIZE] = {0};
-    for(i = 0; i < MAT_SIZE; i++)
+    int i, j, k, w, l, thisSum, max;
+    max = 0;
+    for(l = 0; l < MAT_SIZE; l++)
     {
-        for(j = 0; j < MAT_SIZE; j++)
+        for(w = 1; w <= MAT_SIZE - l; w++)
         {
-            rowSum[i] += matrix[i][j];
-            colSum[j] += matrix[i][j];
+            thisSum = 0;
+            for(k = 0; k < MAT_SIZE; k++)
+            {
+                thisSum += getSubVectorSum(1, k, l, w);
+                if(thisSum > max)
+                {
+                    max = thisSum;
+                }
+                else if(thisSum < 0)
+                {
+                    thisSum = 0;
+                }
+            }
         }
-        
     }
-    printf("%d %d\n",rowSum[0],rowSum[1]);
-    printf("%d %d\n",colSum[0],colSum[1]);
+    return max;
+
 }
